@@ -43,11 +43,13 @@ pub unsafe extern "C" fn roc_panic(msg: *mut RocStr, tag_id: u32) {
     std::process::exit(1);
 }
 
+#[cfg(unix)]
 #[no_mangle]
 pub unsafe extern "C" fn roc_dbg(loc: *mut RocStr, msg: *mut RocStr, src: *mut RocStr) {
     eprintln!("[{}] {} = {}", &*loc, &*src, &*msg);
 }
 
+#[cfg(unix)]
 #[no_mangle]
 pub unsafe extern "C" fn roc_memset(dst: *mut c_void, c: i32, n: usize) -> *mut c_void {
     libc::memset(dst, c, n)
