@@ -1,5 +1,7 @@
 # Work in progress!
 
+This is a temporary change to an ignored file, for testing purposes.
+
 [Roc](https://www.roc-lang.org) is not ready for a 0.1 release yet, but we do have:
 
 - [**installation** guide](https://github.com/roc-lang/roc/tree/main/getting_started)
