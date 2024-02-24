@@ -18,7 +18,7 @@ run-all-test-cases() {
     done
 
     let "total=num_ok+num_failed"
-    echo "${total} tests ran: Ok ${num_ok}, failed ${num_failed}."
+    echo "${total} tests ran: ${num_ok} ok, ${num_failed} failed."
 
     if [ "$num_failed" != "0" ]; then
         return 1
