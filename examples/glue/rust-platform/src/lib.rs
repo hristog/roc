@@ -8,12 +8,12 @@ use std::io::Write;
 use std::os::raw::c_char;
 
 use roc_app::mainForHost as roc_main;
-
+// Test comment /* dlksadsa */
 #[no_mangle]
 pub unsafe extern "C" fn roc_alloc(size: usize, _alignment: u32) -> *mut c_void {
     return libc::malloc(size);
 }
-
+              /* Another comment // here */
 #[no_mangle]
 pub unsafe extern "C" fn roc_realloc(
     c_ptr: *mut c_void,
