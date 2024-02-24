@@ -28,12 +28,10 @@ run-all-test-cases() {
 
 run-test-case() {
     if [ $(run-ignored-check "${1}") = "y" ]; then
-        echo "full"
-        return
-    fi
-    if [ $(run-ignored-check "${1}") = "y" ]; then
-        echo "full"
-        return
+        if [ $(run-rs-check "${1}") = "y" ]; then
+            echo "full"
+            return
+        fi
     fi
     echo "none"
 }
@@ -46,8 +44,12 @@ run-ignored-check() {
     echo "n"
 }
 
-run-rs-comments-check() {
-    if git diff --unified=0 workflow-tc-base "${1}" '*.rs' | grep -E --color=never '^[+-]' | grep -qvE '^(\+\+\+|\-\-\-|[+-]\s*\/\/)'; then
+run-rs-check() {
+    if git diff --name-only workflow-tc-base "${1}" | grep -qvE '(\.md$|\.css$|\.html$|^AUTHORS$|\.rs)'; then
+        echo "y"
+        return
+    fi
+    if git diff --unified=0 workflow-tc-base "${1}" '../*.rs' | grep -E --color=never '^[+-]' | grep -qvE '^(\+\+\+|\-\-\-|[+-]\s*\/\/|[+-]\s*$)'; then
         echo "y"
         return
     fi
