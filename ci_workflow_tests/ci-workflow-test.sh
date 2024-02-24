@@ -49,7 +49,7 @@ run-rs-check() {
         echo "y"
         return
     fi
-    if git diff --unified=0 workflow-tc-base "${1}" '../*.rs' | grep -E --color=never '^[+-]' | grep -qvE '^(\+\+\+|\-\-\-|[+-]\s*\/\/|[+-]\s*$)'; then
+    if git diff --unified=0 workflow-tc-base "${1}" '../*.rs' | grep -E --color=never '^[+-]' | grep -qvE '^(\+\+\+|\-\-\-|[+-]\s*($|\/\/|[+-]|\/\*.*\*\/\s*$))'; then
         echo "y"
         return
     fi
