@@ -21,21 +21,21 @@ run-all-test-cases() {
     echo "${total} tests ran: Ok ${num_ok}, failed ${num_failed}."
 
     if [ "$num_failed" != "0" ]; then
-        echo "return 1"
         return 1
     fi
-    echo "return 0"
     return 0
 }
 
 run-test-case() {
-    if [$(run-ignored-check "${1}") = "y"]; then
-        return "full"
+    if [ $(run-ignored-check "${1}") = "y" ]; then
+        echo "full"
+        return
     fi
-    if [$(run-rs-comments-check "${1}") = "y"]; then
-        return "full"
+    if [ $(run-ignored-check "${1}") = "y" ]; then
+        echo "full"
+        return
     fi
-    return "none"
+    echo "none"
 }
 
 run-ignored-check() {
