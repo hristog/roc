@@ -1,9 +1,10 @@
 // Test change!
+     /* Test change */
 fn main() {
     #[cfg(not(windows))]
             // Test change!
     println!("cargo:rustc-link-lib=dylib=app");
-
+/* Test change */
     #[cfg(windows)]
     println!("cargo:rustc-link-lib=dylib=libapp");
 
@@ -11,3 +12,4 @@ fn main() {
 // Test change!
 }
 //
+/**/
