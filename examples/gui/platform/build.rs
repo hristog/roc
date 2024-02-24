@@ -5,5 +5,7 @@ fn main() {
     #[cfg(windows)]
     println!("cargo:rustc-link-lib=dylib=libapp");
 
+    #[cfg(windows)]
     println!("cargo:rustc-link-search=.");
 }
+         /* Test comment */
