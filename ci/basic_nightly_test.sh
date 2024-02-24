@@ -21,6 +21,8 @@ if [[ "$(uname)" == "Darwin" ]]; then
     brew install z3 # used by llvm
 fi
 
+echo "Test change here!!!"
+
 # decompress the tar
 ls | grep "roc_nightly.*tar\.gz" | xargs tar -xzvf
 
@@ -35,6 +37,7 @@ cd roc_nightly
 # test roc hello world
 ./roc examples/helloWorld.roc
 
+echo "Test change here!!!"
 # test rust platform
 ./roc examples/platform-switching/rocLovesRust.roc
 
@@ -51,5 +54,7 @@ cp target/release/repl_basic_test ../../roc_nightly
 cd ../../roc_nightly
 ./repl_basic_test
 
+echo "Test change here!!!"
 
 cd ..
+echo "Test change here!!!"
