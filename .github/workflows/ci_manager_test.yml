@@ -1,0 +1,81 @@
+on:
+  workflow_dispatch:
+
+name: CI manager (test)
+
+# cancel current runs when a new commit is pushed
+concurrency:
+    group: ${{ github.workflow }}-${{ github.ref }}
+    cancel-in-progress: true
+
+jobs:
+    check-changes:
+        runs-on: ubuntu-22.04
+        outputs:
+            run_tests: ${{ steps.filecheck.outputs.run_tests }}
+        steps:
+            - name: Checkout
+              uses: actions/checkout@v4
+
+            - name: Check if only css, html or md files changed
+              id: filecheck_ignored
+              run: |
+                git fetch origin main
+                if git diff --name-only origin/main HEAD | grep -qvE '(\.md$|\.css$|\.html$|^AUTHORS$)'; then
+                    echo "should_run_tests=y" >> $GITHUB_OUTPUT
+                else
+                    echo "should_run_tests=n" >> $GITHUB_OUTPUT
+                fi
+
+            - name: Check rs files if only comment changes
+              id: filecheck_rs
+              run: |
+                git fetch origin main
+                if git diff --unified=0 origin/main HEAD '*.rs' | grep -E --color=never '^[+-]' | grep -qvE '^(\+\+\+|\-\-\-|[+-]\s*\/\/)'; then
+                    echo "should_run_tests=y" >> $GITHUB_OUTPUT
+                else
+                    echo "should_run_tests=n" >> $GITHUB_OUTPUT
+                fi
+
+            - name: Determine what subset of tests to run based on file checks
+              id: filecheck
+              run: |
+                echo "run_tests=none" >> $GITHUB_OUTPUT
+                for filecheck in {${{ steps.filecheck_ignored.outputs.should_run_tests }},${{ steps.filecheck_rs.outputs.should_run_tests }}}; do
+                  if [ "${filecheck}" = "y" ]; then
+                    echo "run_tests=full" >> $GITHUB_OUTPUT
+                    break
+                  fi
+                done
+
+            - run: echo "debug output ${{ steps.filecheck.outputs.run_tests }}"
+
+    ran-full:
+        runs-on: ubuntu-22.04
+        needs: [check-changes]
+        if: needs.check-changes.outputs.run_tests == 'full'
+        steps:
+            - run: echo "Code files changed. CI manager ran a dummy workflow."
+
+    ran-none:
+        runs-on: ubuntu-22.04
+        needs: [check-changes]
+        if: needs.check-changes.outputs.run_tests == 'none'
+        steps:
+            - run: echo "Only non-code files changed and/or .rs comment line changes. CI manager did not run any workflows."
+
+    # we need a single end job for the required checks under branch protection rules
+    finish:
+      runs-on: ubuntu-22.04
+      needs: [ran-full, ran-none]
+      if: |
+        always()
+      steps:
+        - name: Check previous job results
+          run: |
+            if [ "${{ needs.ran-full.result }}" != "success" ] && [ "${{ needs.ran-none.result }}" != "success" ]; then
+              echo "One or more jobs failed."
+              exit 1
+            fi
+
+        - run: echo "Workflow succeeded :)"
