@@ -11,6 +11,10 @@
 
 If you'd like to contribute, check out [good first issues](https://github.com/roc-lang/roc/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22). Don't hesitate to ask for help on our [group chat](https://roc.zulipchat.com), we're friendly!
 
+```
+// Test!
+```
+
 ## Sponsors
 
 You can 💜 **sponsor** 💜 Roc on:
