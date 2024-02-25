@@ -59,7 +59,7 @@ pub unsafe extern "C" fn roc_getppid() -> libc::pid_t {
     libc::getppid()
 }
 
-#[cfg(unix)]
+#[cfg(windows)]
 #[no_mangle]
 pub unsafe extern "C" fn roc_mmap(
     addr: *mut libc::c_void,
