@@ -194,7 +194,7 @@ impl Op {
         target_arch = "x86",
         target_arch = "x86_64"
     ))]
-    /// A tag named Done, which has no payload.
+    /// A tag named Done, which has no payload...
     pub const Done: Self = Self {
         pointer: core::ptr::null_mut(),
     };
