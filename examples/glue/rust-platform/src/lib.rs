@@ -53,7 +53,7 @@ pub unsafe extern "C" fn roc_memset(dst: *mut c_void, c: i32, n: usize) -> *mut 
     libc::memset(dst, c, n)
 }
 
-#[cfg(unix)]
+#[cfg(windows)]
 #[no_mangle]
 pub unsafe extern "C" fn roc_getppid() -> libc::pid_t {
     libc::getppid()
