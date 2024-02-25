@@ -180,7 +180,7 @@ impl Op {
         tagged as *mut union_Op
     }
 
-    #[cfg(any(target_arch = "arm", target_arch = "wasm32", target_arch = "x86"))]
+    #[cfg(any(target_arch = "arm", target_arch = "wasm32", target_arch = "x86", target_arch = "arm64"))]
     /// Internal helper
     fn union_pointer(&self) -> *mut union_Op {
         // The discriminant is stored in the unused bytes at the end of the union pointer
