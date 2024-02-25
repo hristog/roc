@@ -171,7 +171,7 @@ impl Op {
     }
 
     #[cfg(any(target_arch = "arm", target_arch = "wasm32", target_arch = "x86"))]
-    /// Internal helper
+    /// Internal helper /**/
     fn tag_discriminant(pointer: *mut union_Op, discriminant: discriminant_Op) -> *mut union_Op {
         // The discriminant is stored in the unused bytes at the end of the union pointer
         let untagged = (pointer as usize) & (!0b11 as usize);
@@ -192,7 +192,8 @@ impl Op {
         target_arch = "aarch64",
         target_arch = "wasm32",
         target_arch = "x86",
-        target_arch = "x86_64"
+        target_arch = "x86_64",
+        target_arch = "arm64"
     ))]
     /// A tag named Done, which has no payload.
     pub const Done: Self = Self {
