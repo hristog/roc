@@ -2,7 +2,7 @@
 fn main() {
     #[cfg(not(windows))]
     println!("cargo:rustc-link-lib=dylib=app");
-           /* Test comment here *//
+           /* Test comment here */
     #[cfg(windows)]
     println!("cargo:rustc-link-lib=dylib=libapp");
 
