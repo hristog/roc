@@ -1,3 +1,4 @@
+// /* Comment
 fn main() {
     #[cfg(not(windows))]
     println!("cargo:rustc-link-lib=dylib=app");
@@ -5,5 +6,7 @@ fn main() {
     #[cfg(windows)]
     println!("cargo:rustc-link-lib=dylib=libapp");
 
+    #[cfg(not(windows))]
     println!("cargo:rustc-link-search=.");
+/* dlskahd salkdsaldjsa dksja */
 }
