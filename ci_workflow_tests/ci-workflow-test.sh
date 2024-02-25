@@ -30,30 +30,32 @@ run-test-case() {
     if [ $(run-ignored-check "${1}") = "y" ]; then
         if [ $(run-rs-check "${1}") = "y" ]; then
             echo "full"
-            return
+        else
+            echo "none"
         fi
+    else
+        echo "none"
     fi
-    echo "none"
 }
 
 run-ignored-check() {
     if git diff --name-only workflow-tc-base "${1}" | grep -qvE '(\.md$|\.css$|\.html$|^AUTHORS$)'; then
         echo "y"
-        return
+    else
+        echo "n"
     fi
-    echo "n"
 }
 
 run-rs-check() {
     if git diff --name-only workflow-tc-base "${1}" | grep -qvE '(\.md$|\.css$|\.html$|^AUTHORS$|\.rs)'; then
         echo "y"
-        return
+    else
+        if git diff --unified=0 workflow-tc-base "${1}" '../*.rs' | grep -E --color=never '^[+-]' | grep -qvE '^(\+\+\+|\-\-\-|[+-]\s*($|\/\/|[+-]|\/\*.*\*\/\s*$))'; then
+            echo "y"
+        else
+            echo "n"
+        fi
     fi
-    if git diff --unified=0 workflow-tc-base "${1}" '../*.rs' | grep -E --color=never '^[+-]' | grep -qvE '^(\+\+\+|\-\-\-|[+-]\s*($|\/\/|[+-]|\/\*.*\*\/\s*$))'; then
-        echo "y"
-        return
-    fi
-    echo "n"
 }
 
 "$@"
