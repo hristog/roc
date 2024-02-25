@@ -36,7 +36,7 @@ impl Rgba {
         Self::new(rgb.red, rgb.green, rgb.blue, alpha)
     }
 }
-
+// Test
 impl From<Rgba> for [f32; 4] {
     fn from(rgba: Rgba) -> Self {
         rgba.to_array()
