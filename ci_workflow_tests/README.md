@@ -3,7 +3,12 @@
 To run all test-cases, locally, in a way which simulates the remote GitHub workflow:
 
 ```
-chmod u+x ci-workflow-test.sh
+$ chmod u+x ci-workflow-test.sh
+$ make test
+```
+
+where `make test` itself runs:
+```
 ./ci-workflow-test.sh run-all-test-cases
 ```
 
