@@ -117,6 +117,7 @@ pub extern "C" fn rust_main() -> i32 {
     }
 
     println!("Done!");
+    println!("Done!");
 
     // Exit code
     0
