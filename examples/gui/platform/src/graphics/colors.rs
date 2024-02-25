@@ -33,7 +33,7 @@ impl Rgba {
             (brightness as f32) / 100.0,
         ));
 
-        Self::new(rgb.red, rgb.green, rgb.blue, alpha)
+        Self::new(rgb.red, rgb.green, rgb.blue, alpha) // not covered by comment-detection workflow script
     }
 }
 
