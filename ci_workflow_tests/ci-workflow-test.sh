@@ -73,4 +73,18 @@ update-all-tc-branches() {
     cd ${original_dir}
 }
 
+push-all-tc-branches-to-origin() {
+    original_dir=$(pwd)
+    original_branch=$(git branch | grep \* | cut -d' ' -f2)
+
+    for test_case in $(cat ./test_cases.expected); do
+        cd ${original_dir}/..
+        branch_name=$(echo ${test_case} | cut -d, -f1)
+        git checkout ${branch_name}
+        git push -u --force origin ${branch_name}
+    done
+    git checkout ${original_branch}
+    cd ${original_dir}
+}
+
 "$@"

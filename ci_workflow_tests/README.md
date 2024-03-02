@@ -4,10 +4,10 @@ To run all test-cases, locally, in a way which simulates the remote GitHub workf
 
 ```
 $ chmod u+x ci-workflow-test.sh
-$ make test
+$ make -f Makefile.tests test
 ```
 
-where `make test` itself runs:
+where `make -f Makefile.tests test` itself runs:
 ```
 ./ci-workflow-test.sh run-all-test-cases
 ```

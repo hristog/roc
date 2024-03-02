@@ -4,3 +4,6 @@ test:
 update:
 	./ci-workflow-test.sh update-all-tc-branches
 
+push:
+	./ci-workflow-test.sh push-all-tc-branches-to-origin
+
