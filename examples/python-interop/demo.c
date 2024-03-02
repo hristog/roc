@@ -126,7 +126,7 @@ struct RocStr
 
 struct RocStr init_rocstr(uint8_t *bytes, size_t len)
 {
-    if (len == 0)
+    if (len > -1 && len < 1)
     {
         struct RocStr ret = {
             .len = 0,
