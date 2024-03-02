@@ -31,7 +31,11 @@ run-test-case() {
         if [ $(run-rs-check "${1}") = "y" ]; then
             echo "full"
         else
-            echo "none"
+            if [ $(run-roc-check "${1}") = "y" ]; then
+                echo "full"
+            else
+                echo "none"
+            fi
         fi
     else
         echo "none"
@@ -47,10 +51,22 @@ run-ignored-check() {
 }
 
 run-rs-check() {
-    if git diff --name-only workflow-tc-base "${1}" | grep -qvE '(\.md$|\.css$|\.html$|^AUTHORS$|\.rs)'; then
+    if git diff --name-only workflow-tc-base "${1}" | grep -qvE '(\.md$|\.css$|\.html$|^AUTHORS$|\.rs|\.roc)'; then
         echo "y"
     else
-        if git diff --unified=0 workflow-tc-base "${1}" '../*.rs' | grep -E --color=never '^[+-]' | grep -qvE '^(\+\+\+|\-\-\-|[+-]\s*($|\/\/|[+-]|\/\*.*\*\/\s*$))'; then
+        if git diff --unified=0 workflow-tc-base "${1}" '../*.rs' | grep -E --color=never '^[+-]' | grep -qvE '^(\+\+\+|\-\-\-|[+-]\s*($|\/\/|\/\*.*\*\/\s*$))'; then
+            echo "y"
+        else
+            echo "n"
+        fi
+    fi
+}
+
+run-roc-check() {
+    if git diff --name-only workflow-tc-base "${1}" | grep -qvE '(\.md$|\.css$|\.html$|^AUTHORS$|\.rs|\.roc)'; then
+        echo "y"
+    else
+        if git diff --unified=0 workflow-tc-base "${1}" '../*.roc' | grep -E --color=never '^[+-]' | grep -qvE '^(\+\+\+|\-\-\-|[+-]\s*($|#)'; then
             echo "y"
         else
             echo "n"
