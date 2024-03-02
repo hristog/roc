@@ -66,7 +66,7 @@ run-roc-check() {
     if git diff --name-only workflow-tc-base "${1}" | grep -qvE '(\.md$|\.css$|\.html$|^AUTHORS$|\.rs|\.roc)'; then
         echo "y"
     else
-        if git diff --unified=0 workflow-tc-base "${1}" '../*.roc' | grep -E --color=never '^[+-]' | grep -qvE '^(\+\+\+|\-\-\-|[+-]\s*($|#)'; then
+        if git diff --unified=0 workflow-tc-base "${1}" '../*.roc' | grep -E --color=never '^[+-]' | grep -qvE '^(\+\+\+|\-\-\-|[+-]\s*($|#))'; then
             echo "y"
         else
             echo "n"
