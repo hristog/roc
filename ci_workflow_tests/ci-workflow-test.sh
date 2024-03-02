@@ -59,13 +59,17 @@ run-rs-check() {
 }
 
 update-all-tc-branches() {
+    original_dir=$(pwd)
     original_branch=$(git branch | grep \* | cut -d' ' -f2)
+
+    cd ..
     for test_case in $(cat ./test_cases.expected); do
         branch_name=$(echo ${test_case} | cut -d, -f1)
         git checkout ${branch_name}
         git rebase main
     done
     git checkout ${original_branch}
+    cd ${original_dir}
 }
 
 "$@"
