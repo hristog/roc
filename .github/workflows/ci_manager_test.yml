@@ -48,7 +48,7 @@ jobs:
                 if git diff --name-only origin/main HEAD | grep -qvE '(\.md$|\.css$|\.html$|^AUTHORS$|\.rs|\.roc)'; then
                     echo "should_run_tests=y" >> $GITHUB_OUTPUT
                 else
-                  if git diff --unified=0 origin/main HEAD '*.rs' | grep -E --color=never '^[+-]' | grep -qvE '^(\+\+\+|\-\-\-|[+-]\s*($|#))'; then
+                  if git diff --unified=0 origin/main HEAD '*.roc' | grep -E --color=never '^[+-]' | grep -qvE '^(\+\+\+|\-\-\-|[+-]\s*($|#))'; then
                       echo "should_run_tests=y" >> $GITHUB_OUTPUT
                   else
                       echo "should_run_tests=n" >> $GITHUB_OUTPUT
@@ -86,7 +86,7 @@ jobs:
         needs: [check-changes]
         if: needs.check-changes.outputs.run_tests == 'none'
         steps:
-            - run: echo "Only non-code files changed and/or .rs comment line changes. CI manager did not run any workflows."
+            - run: echo "Only non-code files changed and/or rs and/or roc comment lines changed. CI manager did not run any workflows."
 
     # we need a single end job for the required checks under branch protection rules
     finish:
