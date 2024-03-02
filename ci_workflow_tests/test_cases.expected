@@ -83,4 +83,4 @@ workflow-tc-multiple-rs-comment-and-non-comment-changes-multiple-with-non-commen
 83-workflow-tc-roc-non-comment-changes-only-ignored-file-rs-comment-changes,full
 84-workflow-tc-roc-mixed-comment-and-non-comment-changes-rs-mixed-comment-and-non-comment-changes,full
 85-workflow-tc-roc-and-rs-comment-changes-only-ignored-files,none
-86-workflow-tc-roc-and-rs-comment-changes-only-non-ignored-files,none
+86-workflow-tc-roc-and-rs-comment-changes-only-non-ignored-files,full
