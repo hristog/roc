@@ -1,4 +1,4 @@
-platform "false-interpreter"
+platform "false-interpreter-test"
     requires {} { main : Str -> Task {} [] }
     exposes []
     packages {}
