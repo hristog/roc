@@ -1,4 +1,4 @@
-platform "effects"
+platform "effects-test"
     requires {} { main : Effect.Effect {} }
     exposes []
     packages {}
