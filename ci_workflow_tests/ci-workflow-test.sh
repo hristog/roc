@@ -67,6 +67,7 @@ update-all-tc-branches() {
         branch_name=$(echo ${test_case} | cut -d, -f1)
         git checkout ${branch_name}
         git rebase main
+        git rebase workflow-tc-base
     done
     git checkout ${original_branch}
     cd ${original_dir}
