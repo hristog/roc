@@ -58,4 +58,14 @@ run-rs-check() {
     fi
 }
 
+update-all-tc-branches() {
+    original_branch=$(git branch | grep \* | cut -d' ' -f2)
+    for test_case in $(cat ./test_cases.expected); do
+        branch_name=$(echo ${test_case} | cut -d, -f1)
+        git checkout ${branch_name}
+        git rebase main
+    done
+    git checkout ${original_branch}
+}
+
 "$@"
