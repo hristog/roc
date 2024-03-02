@@ -75,3 +75,12 @@ workflow-tc-multiple-rs-comment-and-non-comment-changes-one-with-comment-changes
 workflow-tc-multiple-rs-comment-and-non-comment-changes-multiple-with-comment-changes-ignored-and-non-ignored-files-changed,full
 workflow-tc-multiple-rs-comment-and-non-comment-changes-one-with-non-comment-changes-ignored-and-non-ignored-files-changed,full
 workflow-tc-multiple-rs-comment-and-non-comment-changes-multiple-with-non-comment-changes-ignored-and-non-ignored-files-changed,full
+78-workflow-tc-roc-comment-changes-only,none
+79-workflow-tc-roc-non-comment-changes-only,full
+80-workflow-tc-roc-mixed-comment-and-non-comment-changes,full
+81-workflow-tc-roc-comment-changes-only-ignored-file-rs-comment-changes,none
+82-workflow-tc-roc-comment-changes-only-ignored-file-rs-mixed-comment-and-non-comment-changes,full
+83-workflow-tc-roc-non-comment-changes-only-ignored-file-rs-comment-changes,full
+84-workflow-tc-roc-mixed-comment-and-non-comment-changes-rs-mixed-comment-and-non-comment-changes,full
+85-workflow-tc-roc-and-rs-comment-changes-only-ignored-files,none
+86-workflow-tc-roc-and-rs-comment-changes-only-non-ignored-files,none
