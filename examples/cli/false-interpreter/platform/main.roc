@@ -4,6 +4,6 @@ platform "false-interpreter"
     packages {}
     imports [Task.{ Task }]
     provides [mainForHost]
-
+                         ## Comment test comment!
 mainForHost : Str -> Task {} []
 mainForHost = \file -> main file
